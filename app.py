@@ -1,6 +1,6 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
-from flask_ngrok import run_with_ngrok
+
 import pickle
 
 
@@ -10,7 +10,7 @@ model_DT = pickle.load(open('DT_project7minor.pkl','rb'))
 model_KNN = pickle.load(open('KNN_project7minor.pkl','rb'))
 model_SVM = pickle.load(open('SVM_project7minor.pkl','rb'))
 model_NB = pickle.load(open('NB_project7minor.pkl','rb'))
-run_with_ngrok(app)
+
 
 @app.route('/')
 def home():
@@ -82,5 +82,6 @@ def predict():
       return render_template('index.html', prediction_text='The person not exited yet', extra_text ="-> Prediction by " + Model)
 
 
-app.run()
+if __name__=="__main__":
+  app.run(debug=True)
 
